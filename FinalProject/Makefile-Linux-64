@@ -1,0 +1,36 @@
+all: trainingApp gameApp
+	mv compile/TrainingApp apps/TrainingApp
+	mv compile/GameApp apps/GameApp
+	 
+trainingApp: 
+	cd compile && \
+	g++ -std=c++11 -c \
+	CommandHandler.cpp \
+	CommandQueue.cpp \
+	Controller.cpp \
+	Director.cpp \
+	Enemy.cpp \
+	Entity.cpp \
+	GameState.cpp \
+	Innovation.cpp \
+	Main.cpp \
+	MemoryMap.cpp \
+	NEATGA.cpp \
+	NEATGenotype.cpp \
+	NEATPhenotype.cpp \
+	Obstacle.cpp \
+	Particle.cpp \
+	Player.cpp \
+	QuadTree.cpp \
+	Species.cpp \
+	TitleStateTraining.cpp \
+	World.cpp \
+	-I SFML-64/include/ -I incl/ && \
+	g++ *.o -o TrainingApp -L SFML-64/lib/ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system && \
+	rm TitleStateTraining.o
+	
+gameApp:
+	cd compile && \
+	g++ -std=c++11 -c TitleStateGame.cpp -I SFML-64/include/ -I incl/ && \
+	g++ *.o -o GameApp -L SFML-64/lib/ -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system && \
+	rm *.o
